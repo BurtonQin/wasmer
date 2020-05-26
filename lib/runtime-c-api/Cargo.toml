@@ -12,10 +12,11 @@ edition = "2018"
 readme = "README.md"
 
 [lib]
-crate-type = ["cdylib", "rlib", "staticlib"]
+crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 libc = "0.2.60"
+paste = "0.1"
 
 [dependencies.wasmer]
 default-features = false
@@ -47,4 +48,4 @@ wasi = ["wasmer-wasi"]
 emscripten = ["wasmer-emscripten"]
 
 [build-dependencies]
-cbindgen = "0.9"
+cbindgen = { git = "https://github.com/eqrion/cbindgen", version = "0.14" }

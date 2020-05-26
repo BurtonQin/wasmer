@@ -41,23 +41,31 @@
 
 #if defined(WASMER_WASI_ENABLED)
 enum Version {
+#if defined(WASMER_WASI_ENABLED)
   /**
    * Version cannot be detected or is unknown.
    */
   Unknown = 0,
+#endif
+#if defined(WASMER_WASI_ENABLED)
   /**
    * Latest version. See `wasmer_wasi::WasiVersion::Latest` to
    * learn more.
    */
   Latest = 1,
+#endif
+#if defined(WASMER_WASI_ENABLED)
   /**
    * `wasi_unstable`.
    */
   Snapshot0 = 2,
+#endif
+#if defined(WASMER_WASI_ENABLED)
   /**
    * `wasi_snapshot_preview1`.
    */
   Snapshot1 = 3,
+#endif
 };
 typedef uint8_t Version;
 #endif
