@@ -178,6 +178,11 @@ pub fn _tvset(mut _ctx: FunctionEnvMut<EmEnv>) {
 }
 
 /// formats time as a C string
+///
+/// # Safety
+///
+/// The function is not thread-safe. The caller must ensure that the
+/// function is exclusively called in a multithreaded environment.
 #[allow(clippy::cast_ptr_alignment)]
 unsafe fn fmt_time(ctx: FunctionEnvMut<EmEnv>, time: u32) -> *const c_char {
     let memory = ctx.data().memory(0);
@@ -189,6 +194,7 @@ unsafe fn fmt_time(ctx: FunctionEnvMut<EmEnv>, time: u32) -> *const c_char {
     ];
     let year = 1900 + date.tm_year;
 
+    static mut TIME_STR: [u8; 38] = [0; 38]; // # of bytes in time_str is 38
     let time_str = format!(
         // NOTE: TODO: Hack! The 14 accompanying chars are needed for some reason
         "{} {} {:2} {:02}:{:02}:{:02} {:4}\n\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -200,8 +206,9 @@ unsafe fn fmt_time(ctx: FunctionEnvMut<EmEnv>, time: u32) -> *const c_char {
         date.tm_sec,
         year
     );
-
-    time_str[0..26].as_ptr() as _
+    use std::convert::TryInto; // Used before Rust 2021
+    TIME_STR = time_str.as_bytes()[0..26].try_into().unwrap();
+    TIME_STR.as_ptr() as _
 }
 
 /// emscripten: _asctime
