@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["TableElement","A reference stored in a table. Can be either an externref or a funcref."]],"struct":[["VMTable","A table instance."]],"union":[["RawTableElement",""]]});

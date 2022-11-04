@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Array","The `Array` marker type. This type can be used like `WasmPtr<T, Array>` to get access to methods"],["WasmPtr",""]]});

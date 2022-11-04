@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["CLIOptions","The options for the wasmer Command Line Interface"]],"fn":[["main",""]]});

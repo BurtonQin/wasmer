@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Ctx","The context of the currently running WebAssembly instance."]]});

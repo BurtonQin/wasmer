@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["VMGlobal","A Global instance"]]});
